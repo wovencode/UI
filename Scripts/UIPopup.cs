@@ -1,5 +1,5 @@
 ﻿// =======================================================================================
-// UIWindowLogin
+// UIPopup
 // by Weaver (Fhiz)
 // MIT licensed
 // =======================================================================================
@@ -13,10 +13,14 @@ using UnityEngine.UI;
 
 namespace wovencode
 {
-
-	public abstract partial class UIPopup : MonoBehaviour
+	
+	// ===================================================================================
+	// UIPopup
+	// ===================================================================================
+	public abstract partial class UIPopup : UIBase
 	{
-
+		
+		[Header("UI Popup")]
 		[SerializeField] protected UIWindowBackground background;
 		[SerializeField] protected Animator animator;
 		[SerializeField] protected string showTriggerName = "show";
@@ -24,9 +28,10 @@ namespace wovencode
 		[SerializeField] protected Text description;
 		
 		// -------------------------------------------------------------------------------
-		void Start()
+		protected override void Awake()
 		{
 			SetPopupActive(false);
+			base.Awake();
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -34,6 +39,8 @@ namespace wovencode
 		{
 			description.text = _text;
 			Setup();
+
+			base.Show();
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -52,6 +59,7 @@ namespace wovencode
 		protected void Setup()
 		{
 			SetPopupActive(true);
+			
 			animator.SetTrigger(showTriggerName);
 			background.FadeIn();
 		}
@@ -63,7 +71,7 @@ namespace wovencode
 			background.FadeOut();
 			StartCoroutine(Tools.GetMethodName(DeactivateWindow));
 		}
-		                          
+		 
 		// -------------------------------------------------------------------------------
 		protected IEnumerator DeactivateWindow()
 		{
@@ -74,8 +82,8 @@ namespace wovencode
 		// -------------------------------------------------------------------------------
 		protected void SetPopupActive(bool active)
 		{
-			gameObject.SetActive(active);
 			background.gameObject.SetActive(active);
+			Hide();
 		}
 		
 		// -------------------------------------------------------------------------------

@@ -280,6 +280,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58efa095d041f4ff5bb12522975fa9c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  root: {fileID: 3279803655345060307}
+  hideOnAwake: 1
+  eventShow:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  eventHide:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   background: {fileID: 3279803655369038747}
   animator: {fileID: 3279803655345060308}
   showTriggerName: show
