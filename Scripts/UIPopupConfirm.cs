@@ -37,18 +37,20 @@ namespace wovencode
 		// -------------------------------------------------------------------------------
 		//
 		// -------------------------------------------------------------------------------
-		public void Setup(string _description, string confirmText, Action confirm)
+		public void Setup(string _description, string confirmText="", Action confirm=null)
 		{
-	
-			confirmAction 			= confirm;
+			
+			if (confirm != null)
+				confirmAction 			= confirm;
 			
 			if (confirmButton && confirmButton.GetComponent<Text>() != null)
 			{
 				confirmButton.onClick.SetListener(() => { onClickConfirm(); });
-				confirmButton.GetComponent<Text>().text 	= confirmText;
+				
+				if (!String.IsNullOrWhiteSpace(confirmText))
+					confirmButton.GetComponent<Text>().text = confirmText;
 			}	
 				
-			
 			Show(_description);
 		
 		}
