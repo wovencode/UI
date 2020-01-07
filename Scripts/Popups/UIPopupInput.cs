@@ -1,7 +1,13 @@
 ﻿// =======================================================================================
-// UIPopupSlider
+// UIPopupInput
 // by Weaver (Fhiz)
 // MIT licensed
+// 
+// This popup provides your user with an input field for text or numeric values. It offers
+// a way to Confirm or Cancel the process and each decision can result in a unique action.
+// This class is universal and can be used anywhere you want your user to input a name,
+// text or number.
+// 
 // =======================================================================================
 
 using wovencode;
@@ -14,13 +20,13 @@ namespace wovencode
 {
 
 	// ===================================================================================
-	// UIPopupSlider
+	// UIPopupInput
 	// ===================================================================================
 	[DisallowMultipleComponent]
-	public partial class UIPopupSlider : UIPopup
+	public partial class UIPopupInput : UIPopup
 	{
 
-		public static UIPopupSlider singleton;
+		public static UIPopupInput singleton;
 		
 		protected Action confirmAction;
 		

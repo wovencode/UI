@@ -1,7 +1,13 @@
 ﻿// =======================================================================================
-// UIPopupConfirm
+// UIPopupNotify
 // by Weaver (Fhiz)
 // MIT licensed
+//
+// This popup type offers no choices at all (not even Cancel/Close). Instead it simply
+// displays a short message to the user and hides itself after a preset amount of seconds.
+// This class is universal and can be used everywhere you want to display small pieces of
+// information to your user, that require direct attention.
+//
 // =======================================================================================
 
 using wovencode;
@@ -14,17 +20,13 @@ namespace wovencode
 {
 
 	// ===================================================================================
-	// UIPopupConfirm
+	// UIPopupNotify
 	// ===================================================================================
 	[DisallowMultipleComponent]
-	public partial class UIPopupConfirm : UIPopup
+	public partial class UIPopupNotify: UIPopup
 	{
 
-		public static UIPopupConfirm singleton;
-		
-		protected Action confirmAction;
-		
-		[SerializeField] protected Button confirmButton;
+		public static UIPopupNotify singleton;
 		
 		// -------------------------------------------------------------------------------
 		// Awake
@@ -38,30 +40,18 @@ namespace wovencode
 		// -------------------------------------------------------------------------------
 		// Setup
 		// -------------------------------------------------------------------------------
-		public void Setup(string _description, string _confirmText="", Action _confirmAction=null)
+		public void Setup(string _description, float _duration=2)
 		{
-			
-			confirmAction = _confirmAction;
-			
-			if (confirmButton)
-				confirmButton.onClick.SetListener(() => { onClickConfirm(); });
-				
-			if (confirmButton && confirmButton.GetComponent<Text>() != null && !String.IsNullOrWhiteSpace(_confirmText))
-				confirmButton.GetComponent<Text>().text = _confirmText;
-			
 			Show(_description);
-		
+			Invoke(nameof(Close), _duration);
 		}
 		
 		// -------------------------------------------------------------------------------
-		// onClickConfirm
+		// OnDestroy
 		// -------------------------------------------------------------------------------
-		public override void onClickConfirm()
+		void OnDestroy()
 		{
-			if (confirmAction != null)
-				confirmAction();
-
-			Close();
+			CancelInvoke(nameof(Close));
 		}
 		
 		// -------------------------------------------------------------------------------

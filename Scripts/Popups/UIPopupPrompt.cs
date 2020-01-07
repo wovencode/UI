@@ -2,6 +2,11 @@
 // UIPopupPrompt
 // by Weaver (Fhiz)
 // MIT licensed
+//
+// This popup offers the user with choices: Confirm or Cancel. Both can trigger a unique
+// action so you can use it for A/B decisions as well. This class is universal and can be
+// used anywhere you require the user to make a Yes/No decision.
+//
 // =======================================================================================
 
 using wovencode;

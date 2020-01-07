@@ -2,6 +2,14 @@
 // UIPopup
 // by Weaver (Fhiz)
 // MIT licensed
+//
+// The base class all popup windows are derived from. It features a UIWindowBackground
+// that hides all other UI elements underneath it (so the user can only interact with
+// the popup while it is shown).
+//
+// Popup classes are partial but feature no DevExtension hooks as this impacts performance
+// Instead, developers are encouraged to add their own components to the same UI element.
+//
 // =======================================================================================
 
 using wovencode;
@@ -38,7 +46,6 @@ namespace wovencode
 		{
 			description.text = _text;
 			Setup();
-
 			base.Show();
 		}
 		
@@ -58,7 +65,6 @@ namespace wovencode
 		protected void Setup()
 		{
 			SetPopupActive(true);
-			
 			animator.SetTrigger(showTriggerName);
 			background.FadeIn();
 		}

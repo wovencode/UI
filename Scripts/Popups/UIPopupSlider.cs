@@ -1,7 +1,12 @@
 ﻿// =======================================================================================
-// UIPopupInput
+// UIPopupSlider
 // by Weaver (Fhiz)
 // MIT licensed
+//
+// This popup provides a slider that is used to input a numeric value. The process can
+// be confirmed and cancelled. Confirmation passes the sliders input value. This class
+// is universal and can be used everywhere you want to prompt the user for numeric input.
+//
 // =======================================================================================
 
 using wovencode;
@@ -14,20 +19,20 @@ namespace wovencode
 {
 
 	// ===================================================================================
-	// UIPopupInput
+	// UIPopupSlider
 	// ===================================================================================
 	[DisallowMultipleComponent]
-	public partial class UIPopupInput : UIPopup
+	public partial class UIPopupSlider : UIPopup
 	{
 
-		public static UIPopupInput singleton;
+		public static UIPopupSlider singleton;
 		
 		protected Action confirmAction;
 		
 		[SerializeField] protected Button confirmButton;
 		
 		// -------------------------------------------------------------------------------
-		//
+		// Awake
 		// -------------------------------------------------------------------------------
 		protected override void Awake()
 		{
@@ -36,7 +41,7 @@ namespace wovencode
 		}
 		
 		// -------------------------------------------------------------------------------
-		//
+		// Setup
 		// -------------------------------------------------------------------------------
 		public void Setup(string _description, string confirmText="", Action confirm=null)
 		{
@@ -57,7 +62,7 @@ namespace wovencode
 		}
 		
 		// -------------------------------------------------------------------------------
-		//
+		// onClickConfirm
 		// -------------------------------------------------------------------------------
 		public override void onClickConfirm()
 		{

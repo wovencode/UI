@@ -2,6 +2,13 @@
 // UIRoot
 // by Weaver (Fhiz)
 // MIT licensed
+//
+// based of Suriyun's UIBase class to provide a root class for all other UI elements.
+// This class makes the Update function private and implements a ThrottledUpdate function 
+// to be used instead. This way, all updates run at a throttled rate (that can be set
+// via the inspector) instead of once per frame. The result is a major performance
+// improvement, implemented right at the root of any UI element.
+//
 // =======================================================================================
 
 using wovencode;
