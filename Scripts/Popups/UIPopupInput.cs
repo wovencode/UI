@@ -28,12 +28,16 @@ namespace wovencode
 
 		public static UIPopupInput singleton;
 		
-		protected Action confirmAction;
+		protected Action<long> confirmAction;
+		protected Action cancelAction;
 		
-		[SerializeField] protected Button confirmButton;
+		[SerializeField] protected Slider 	slider;
+		[SerializeField] protected Text 	sliderValueText;
+		[SerializeField] protected Button 	confirmButton;
+		[SerializeField] protected Button 	cancelButton;
 		
 		// -------------------------------------------------------------------------------
-		//
+		// Awake
 		// -------------------------------------------------------------------------------
 		protected override void Awake()
 		{
@@ -42,33 +46,70 @@ namespace wovencode
 		}
 		
 		// -------------------------------------------------------------------------------
-		//
+		// Setup
 		// -------------------------------------------------------------------------------
-		public void Setup(string _description, string confirmText="", Action confirm=null)
+		public void Setup(string _description, string _confirmText="", string _cancelText="", Action<long> _confirmAction=null, Action _cancelAction=null)
 		{
 			
-			if (confirm != null)
-				confirmAction 			= confirm;
+			confirmAction 	= _confirmAction;
+			cancelAction 	= _cancelAction;
 			
-			if (confirmButton && confirmButton.GetComponent<Text>() != null)
-			{
+			if (confirmButton)
 				confirmButton.onClick.SetListener(() => { onClickConfirm(); });
 				
-				if (!String.IsNullOrWhiteSpace(confirmText))
-					confirmButton.GetComponent<Text>().text = confirmText;
-			}	
+			if (confirmButton && confirmButton.GetComponent<Text>() != null && !String.IsNullOrWhiteSpace(_confirmText))
+				confirmButton.GetComponent<Text>().text = _confirmText;
 				
+			if (cancelButton)
+				cancelButton.onClick.SetListener(() => { onClickCancel(); });
+			
+			if (cancelButton && cancelButton.GetComponent<Text>() != null && !String.IsNullOrWhiteSpace(_cancelText))
+				cancelButton.GetComponent<Text>().text = _cancelText;
+			
+			onChange();
+			
 			Show(_description);
 		
 		}
 		
 		// -------------------------------------------------------------------------------
-		//
+		public void onClickMinus()
+		{
+			slider.value--;
+			onChange();
+		}
+		
+		// -------------------------------------------------------------------------------
+		public void onClickPlus()
+		{
+			slider.value++;
+			onChange();
+		}
+		
+		// -------------------------------------------------------------------------------
+		public void onChange()
+		{
+			sliderValueText.text = slider.value.ToString() + "/" + slider.maxValue.ToString();
+		}
+		
+		// -------------------------------------------------------------------------------
+		// onClickConfirm
 		// -------------------------------------------------------------------------------
 		public override void onClickConfirm()
 		{
 			if (confirmAction != null)
-				confirmAction();
+				confirmAction(Convert.ToInt32(slider.value));
+
+			Close();
+		}
+		
+		// -------------------------------------------------------------------------------
+		// onClickCancel
+		// -------------------------------------------------------------------------------
+		public override void onClickCancel()
+		{
+			if (cancelAction != null)
+				cancelAction();
 
 			Close();
 		}
