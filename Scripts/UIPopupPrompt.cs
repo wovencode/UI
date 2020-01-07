@@ -46,24 +46,17 @@ namespace wovencode
 			confirmAction 	= _confirmAction;
 			cancelAction 	= _cancelAction;
 			
-			if (confirmButton && confirmButton.GetComponent<Text>() != null)
-			{
-				
+			if (confirmButton)
 				confirmButton.onClick.SetListener(() => { onClickConfirm(); });
 				
-				if (!String.IsNullOrWhiteSpace(_confirmText))
-					confirmButton.GetComponent<Text>().text = _confirmText;
+			if (confirmButton && confirmButton.GetComponent<Text>() != null && !String.IsNullOrWhiteSpace(_confirmText))
+				confirmButton.GetComponent<Text>().text = _confirmText;
 				
-			}
-			
-			if (cancelButton && cancelButton.GetComponent<Text>() != null)
-			{
+			if (cancelButton)
 				cancelButton.onClick.SetListener(() => { onClickCancel(); });
-				
-				if (!String.IsNullOrWhiteSpace(_cancelText))
-					cancelButton.GetComponent<Text>().text = _cancelText;
-				
-			}	
+			
+			if (cancelButton && cancelButton.GetComponent<Text>() != null && !String.IsNullOrWhiteSpace(_cancelText))
+				cancelButton.GetComponent<Text>().text = _cancelText;
 				
 			Show(_description);
 		

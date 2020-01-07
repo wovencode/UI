@@ -44,14 +44,12 @@ namespace wovencode
 			
 			confirmAction = _confirmAction;
 			
-			if (confirmButton && confirmButton.GetComponent<Text>() != null)
-			{
+			if (confirmButton)
 				confirmButton.onClick.SetListener(() => { onClickConfirm(); });
 				
-				if (!String.IsNullOrWhiteSpace(_confirmText))
-					confirmButton.GetComponent<Text>().text = _confirmText;
-			}	
-				
+			if (confirmButton && confirmButton.GetComponent<Text>() != null && !String.IsNullOrWhiteSpace(_confirmText))
+				confirmButton.GetComponent<Text>().text = _confirmText;
+			
 			Show(_description);
 		
 		}
