@@ -1,5 +1,5 @@
 ﻿// =======================================================================================
-// UIPopupConfirm
+// UIPopupPrompt
 // by Weaver (Fhiz)
 // MIT licensed
 // =======================================================================================
@@ -10,22 +10,23 @@ using System.Collections;
 using System;
 using UnityEngine.UI;
 
-
 namespace wovencode
 {
 
 	// ===================================================================================
-	// UIPopupConfirm
+	// UIPopupPrompt
 	// ===================================================================================
 	[DisallowMultipleComponent]
-	public partial class UIPopupConfirm : UIPopup
+	public partial class UIPopupPrompt : UIPopup
 	{
 
-		public static UIPopupConfirm singleton;
+		public static UIPopupPrompt singleton;
 		
 		protected Action confirmAction;
+		protected Action cancelAction;
 		
 		[SerializeField] protected Button confirmButton;
+		[SerializeField] protected Button cancelButton;
 		
 		// -------------------------------------------------------------------------------
 		// Awake
@@ -39,17 +40,29 @@ namespace wovencode
 		// -------------------------------------------------------------------------------
 		// Setup
 		// -------------------------------------------------------------------------------
-		public void Setup(string _description, string _confirmText="", Action _confirmAction=null)
+		public void Setup(string _description, string _confirmText="", string _cancelText="", Action _confirmAction=null, Action _cancelAction=null)
 		{
-			
-			confirmAction = _confirmAction;
+
+			confirmAction 	= _confirmAction;
+			cancelAction 	= _cancelAction;
 			
 			if (confirmButton && confirmButton.GetComponent<Text>() != null)
 			{
+				
 				confirmButton.onClick.SetListener(() => { onClickConfirm(); });
 				
 				if (!String.IsNullOrWhiteSpace(_confirmText))
 					confirmButton.GetComponent<Text>().text = _confirmText;
+				
+			}
+			
+			if (cancelButton && cancelButton.GetComponent<Text>() != null)
+			{
+				cancelButton.onClick.SetListener(() => { onClickCancel(); });
+				
+				if (!String.IsNullOrWhiteSpace(_cancelText))
+					cancelButton.GetComponent<Text>().text = _cancelText;
+				
 			}	
 				
 			Show(_description);
@@ -63,6 +76,17 @@ namespace wovencode
 		{
 			if (confirmAction != null)
 				confirmAction();
+
+			Close();
+		}
+		
+		// -------------------------------------------------------------------------------
+		// onClickCancel
+		// -------------------------------------------------------------------------------
+		public override void onClickCancel()
+		{
+			if (cancelAction != null)
+				cancelAction();
 
 			Close();
 		}

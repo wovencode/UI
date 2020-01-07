@@ -1,5 +1,5 @@
 ﻿// =======================================================================================
-// UIPopupConfirm
+// UIPopupInput
 // by Weaver (Fhiz)
 // MIT licensed
 // =======================================================================================
@@ -15,20 +15,20 @@ namespace wovencode
 {
 
 	// ===================================================================================
-	// UIPopupConfirm
+	// UIPopupInput
 	// ===================================================================================
 	[DisallowMultipleComponent]
-	public partial class UIPopupConfirm : UIPopup
+	public partial class UIPopupInput : UIPopup
 	{
 
-		public static UIPopupConfirm singleton;
+		public static UIPopupInput singleton;
 		
 		protected Action confirmAction;
 		
 		[SerializeField] protected Button confirmButton;
 		
 		// -------------------------------------------------------------------------------
-		// Awake
+		//
 		// -------------------------------------------------------------------------------
 		protected override void Awake()
 		{
@@ -37,19 +37,20 @@ namespace wovencode
 		}
 		
 		// -------------------------------------------------------------------------------
-		// Setup
+		//
 		// -------------------------------------------------------------------------------
-		public void Setup(string _description, string _confirmText="", Action _confirmAction=null)
+		public void Setup(string _description, string confirmText="", Action confirm=null)
 		{
 			
-			confirmAction = _confirmAction;
+			if (confirm != null)
+				confirmAction 			= confirm;
 			
 			if (confirmButton && confirmButton.GetComponent<Text>() != null)
 			{
 				confirmButton.onClick.SetListener(() => { onClickConfirm(); });
 				
-				if (!String.IsNullOrWhiteSpace(_confirmText))
-					confirmButton.GetComponent<Text>().text = _confirmText;
+				if (!String.IsNullOrWhiteSpace(confirmText))
+					confirmButton.GetComponent<Text>().text = confirmText;
 			}	
 				
 			Show(_description);
@@ -57,7 +58,7 @@ namespace wovencode
 		}
 		
 		// -------------------------------------------------------------------------------
-		// onClickConfirm
+		//
 		// -------------------------------------------------------------------------------
 		public override void onClickConfirm()
 		{
