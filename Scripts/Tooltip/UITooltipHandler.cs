@@ -24,6 +24,8 @@ namespace wovencode
 		[TextArea(1, 40)]
 		public string tooltipText = "";
 		
+		protected bool _tooltipActive;
+		
 		// -------------------------------------------------------------------------------
 		// SetupToolTip
 		// -------------------------------------------------------------------------------
@@ -32,6 +34,7 @@ namespace wovencode
 			UITooltip.singleton.Show(tooltipText);
 			UITooltip.singleton.transform.SetParent(transform.root, true);
 			UITooltip.singleton.transform.SetAsLastSibling();
+			_tooltipActive = true;
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -49,6 +52,7 @@ namespace wovencode
 		{
 			CancelInvoke(nameof(ShowToolTip));
 			UITooltip.singleton.Hide();
+			_tooltipActive = false;
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -74,7 +78,8 @@ namespace wovencode
 		// -------------------------------------------------------------------------------
 		void Update()
 		{
-			UITooltip.singleton.UpdateTooltip(tooltipText);
+			if (_tooltipActive)
+				UITooltip.singleton.UpdateTooltip(tooltipText);
 		}
 		
 		// -------------------------------------------------------------------------------
