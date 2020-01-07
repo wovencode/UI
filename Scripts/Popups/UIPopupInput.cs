@@ -28,13 +28,12 @@ namespace wovencode
 
 		public static UIPopupInput singleton;
 		
-		protected Action<long> confirmAction;
+		protected Action<string> confirmAction;
 		protected Action cancelAction;
 		
-		[SerializeField] protected Slider 	slider;
-		[SerializeField] protected Text 	sliderValueText;
-		[SerializeField] protected Button 	confirmButton;
-		[SerializeField] protected Button 	cancelButton;
+		[SerializeField] protected InputField 	inputField;
+		[SerializeField] protected Button 		confirmButton;
+		[SerializeField] protected Button 		cancelButton;
 		
 		// -------------------------------------------------------------------------------
 		// Awake
@@ -48,7 +47,7 @@ namespace wovencode
 		// -------------------------------------------------------------------------------
 		// Setup
 		// -------------------------------------------------------------------------------
-		public void Setup(string _description, string _confirmText="", string _cancelText="", Action<long> _confirmAction=null, Action _cancelAction=null)
+		public void Setup(string _description, string _confirmText="", string _cancelText="", Action<string> _confirmAction=null, Action _cancelAction=null)
 		{
 			
 			confirmAction 	= _confirmAction;
@@ -66,30 +65,18 @@ namespace wovencode
 			if (cancelButton && cancelButton.GetComponent<Text>() != null && !String.IsNullOrWhiteSpace(_cancelText))
 				cancelButton.GetComponent<Text>().text = _cancelText;
 			
-			onChange();
+			onInputChange();
 			
 			Show(_description);
 		
 		}
 		
 		// -------------------------------------------------------------------------------
-		public void onClickMinus()
-		{
-			slider.value--;
-			onChange();
-		}
-		
+		// onInputChange
 		// -------------------------------------------------------------------------------
-		public void onClickPlus()
+		public void onInputChange()
 		{
-			slider.value++;
-			onChange();
-		}
-		
-		// -------------------------------------------------------------------------------
-		public void onChange()
-		{
-			sliderValueText.text = slider.value.ToString() + "/" + slider.maxValue.ToString();
+			confirmButton.interactable = !String.IsNullOrWhiteSpace(inputField.text);
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -98,7 +85,7 @@ namespace wovencode
 		public override void onClickConfirm()
 		{
 			if (confirmAction != null)
-				confirmAction(Convert.ToInt32(slider.value));
+				confirmAction(inputField.text);
 
 			Close();
 		}
