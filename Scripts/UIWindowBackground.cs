@@ -6,21 +6,41 @@
 
 using UnityEngine;
 using System.Collections;
+using wovencode;
 
-public class UIWindowBackground : MonoBehaviour 
+namespace wovencode
 {
+	
+	// ===================================================================================
+	// UIWindowBackground
+	// ===================================================================================
+	public class UIWindowBackground : MonoBehaviour 
+	{
 
-    [SerializeField] protected Animator animator;
-    [SerializeField] protected string fadeInTriggerName = "fadeIn";
-    [SerializeField] protected string fadeOutTriggerName = "fadeOut";
+		[SerializeField] protected Animator animator;
+		[SerializeField] protected string fadeInTriggerName = "fadeIn";
+		[SerializeField] protected string fadeOutTriggerName = "fadeOut";
+		
+		// -------------------------------------------------------------------------------
+		// FadeIn
+		// -------------------------------------------------------------------------------
+		public void FadeIn()
+		{
+			animator.SetTrigger(fadeInTriggerName);
+		}
+		
+		// -------------------------------------------------------------------------------
+		// FadeOut
+		// -------------------------------------------------------------------------------
+		public void FadeOut()
+		{
+			animator.SetTrigger(fadeOutTriggerName);
+		}
+		
+		// -------------------------------------------------------------------------------
+		
+	}
 
-    public void FadeIn()
-    {
-        animator.SetTrigger(fadeInTriggerName);
-    }
-
-    public void FadeOut()
-    {
-        animator.SetTrigger(fadeOutTriggerName);
-    }
 }
+
+// =======================================================================================
