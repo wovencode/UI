@@ -61,6 +61,7 @@ namespace wovencode
 		// -------------------------------------------------------------------------------
 		public void OnPointerEnter(PointerEventData d)
 		{
+			if (UITooltip.singleton.Active) return;
 			ShowToolTip(0.3f);
 		}
 		
