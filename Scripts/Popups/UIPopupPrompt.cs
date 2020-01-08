@@ -43,9 +43,9 @@ namespace wovencode
 		}
 		
 		// -------------------------------------------------------------------------------
-		// Setup
+		// Init
 		// -------------------------------------------------------------------------------
-		public void Setup(string _description, string _confirmText="", string _cancelText="", Action _confirmAction=null, Action _cancelAction=null)
+		public void Init(string _description, string _confirmText="", string _cancelText="", Action _confirmAction=null, Action _cancelAction=null)
 		{
 
 			confirmAction 	= _confirmAction;

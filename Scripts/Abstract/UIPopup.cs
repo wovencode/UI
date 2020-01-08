@@ -45,7 +45,7 @@ namespace wovencode
 		public virtual void Show(string _text)
 		{
 			description.text = _text;
-			Setup();
+			Init();
 			base.Show();
 		}
 		
@@ -62,7 +62,7 @@ namespace wovencode
 		}
 		
 		// -------------------------------------------------------------------------------
-		protected void Setup()
+		protected void Init()
 		{
 			SetPopupActive(true);
 			animator.SetTrigger(showTriggerName);

@@ -38,9 +38,9 @@ namespace wovencode
 		}
 		
 		// -------------------------------------------------------------------------------
-		// Setup
+		// Init
 		// -------------------------------------------------------------------------------
-		public void Setup(string _description, float _duration=2)
+		public void Init(string _description, float _duration=2)
 		{
 			Show(_description);
 			Invoke(nameof(Close), _duration);

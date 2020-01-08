@@ -18,7 +18,7 @@ namespace wovencode
 	// ===================================================================================
 	// UITooltipHandler
 	// ===================================================================================
-	public class UITooltipHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+	public partial class UITooltipHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	{
 
 		[TextArea(1, 40)]
@@ -27,9 +27,9 @@ namespace wovencode
 		protected bool _tooltipActive;
 		
 		// -------------------------------------------------------------------------------
-		// SetupToolTip
+		// Init
 		// -------------------------------------------------------------------------------
-		void SetupToolTip()
+		protected void Init()
 		{
 			UITooltip.singleton.Show(tooltipText);
 			UITooltip.singleton.transform.SetParent(transform.root, true);
@@ -41,15 +41,15 @@ namespace wovencode
 		// -------------------------------------------------------------------------------
 		// ShowToolTip
 		// -------------------------------------------------------------------------------
-		void ShowToolTip(float delay)
+		protected void ShowToolTip(float delay)
 		{
-			Invoke(nameof(SetupToolTip), delay);
+			Invoke(nameof(Init), delay);
 		}
 		
 		// -------------------------------------------------------------------------------
 		// HideTooltip
 		// -------------------------------------------------------------------------------
-		void HideTooltip()
+		protected void HideTooltip()
 		{
 			CancelInvoke(nameof(ShowToolTip));
 			UITooltip.singleton.Hide();
@@ -77,7 +77,7 @@ namespace wovencode
 		// constantly update the tooltip text (as long as its visible) because values might
 		// change
 		// -------------------------------------------------------------------------------
-		void Update()
+		protected void Update()
 		{
 			if (!_tooltipActive) return;
 			UITooltip.singleton.UpdateTooltip(tooltipText);
@@ -87,7 +87,7 @@ namespace wovencode
 		// -------------------------------------------------------------------------------
 		// OnDisable
 		// -------------------------------------------------------------------------------
-		void OnDisable()
+		protected void OnDisable()
 		{
 			HideTooltip();
 		}
@@ -95,7 +95,7 @@ namespace wovencode
 		// -------------------------------------------------------------------------------
 		// OnDestroy
 		// -------------------------------------------------------------------------------
-		void OnDestroy()
+		protected void OnDestroy()
 		{
 			HideTooltip();
 		}
