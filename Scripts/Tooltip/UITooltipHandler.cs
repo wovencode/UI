@@ -34,6 +34,7 @@ namespace wovencode
 			UITooltip.singleton.Show(tooltipText);
 			UITooltip.singleton.transform.SetParent(transform.root, true);
 			UITooltip.singleton.transform.SetAsLastSibling();
+			UITooltip.singleton.transform.position = Input.mousePosition;
 			_tooltipActive = true;
 		}
 		
@@ -78,8 +79,9 @@ namespace wovencode
 		// -------------------------------------------------------------------------------
 		void Update()
 		{
-			if (_tooltipActive)
-				UITooltip.singleton.UpdateTooltip(tooltipText);
+			if (!_tooltipActive) return;
+			UITooltip.singleton.UpdateTooltip(tooltipText);
+			UITooltip.singleton.transform.position = Input.mousePosition;
 		}
 		
 		// -------------------------------------------------------------------------------
