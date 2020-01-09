@@ -43,7 +43,7 @@ namespace wovencode
 		// -------------------------------------------------------------------------------
 		public virtual void Init(ref T _entry)
 		{
-			localPlayer 			= AccountManager.localPlayer;
+			localPlayer 			= PlayerManager.localPlayer;
 			entry 					= _entry;
 		}
 		
