@@ -37,13 +37,15 @@ namespace wovencode
     	public Text timerText;
     	public Image timerCircle;
     	
-		protected GameObject		localPlayer;
+		protected GameObject		localPlayer = null;
 		protected T					entry;
 		
 		// -------------------------------------------------------------------------------
 		public virtual void Init(ref T _entry)
 		{
+#if WOCO_PLAYER
 			localPlayer 			= PlayerManager.localPlayer;
+#endif
 			entry 					= _entry;
 		}
 		
