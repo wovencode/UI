@@ -43,6 +43,7 @@ namespace wovencode
 		// -------------------------------------------------------------------------------
 		protected void ShowToolTip(float delay)
 		{
+			HideTooltip();
 			Invoke(nameof(Init), delay);
 		}
 		
