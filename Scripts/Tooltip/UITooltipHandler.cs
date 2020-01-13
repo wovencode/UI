@@ -70,7 +70,8 @@ namespace wovencode
 		// -------------------------------------------------------------------------------
 		public void OnPointerExit(PointerEventData d)
 		{
-			HideTooltip();
+			if (_tooltipActive)
+				HideTooltip();
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -90,7 +91,8 @@ namespace wovencode
 		// -------------------------------------------------------------------------------
 		protected void OnDisable()
 		{
-			HideTooltip();
+			if (_tooltipActive)
+				HideTooltip();
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -98,7 +100,8 @@ namespace wovencode
 		// -------------------------------------------------------------------------------
 		protected void OnDestroy()
 		{
-			HideTooltip();
+			if (_tooltipActive)
+				HideTooltip();
 		}
 		
 	}
