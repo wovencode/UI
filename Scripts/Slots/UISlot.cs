@@ -44,7 +44,7 @@ namespace wovencode
 		public virtual void Init(ref T _entry)
 		{
 #if WOCO_PLAYER
-			localPlayer 			= PlayerManager.localPlayer;
+			localPlayer 			= PlayerComponent.localPlayer;
 #endif
 			entry 					= _entry;
 		}
