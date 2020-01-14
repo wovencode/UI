@@ -1,5 +1,5 @@
 // =======================================================================================
-// UIButton
+// Wovencore
 // by Weaver (Fhiz)
 // MIT licensed
 // =======================================================================================
@@ -22,15 +22,12 @@ namespace wovencode
 		
 		protected UIButtonGroup buttonGroup;
 		protected bool _interactable;
-		protected GameObject localPlayer;
 		
 		// -------------------------------------------------------------------------------
-		public virtual void Init(GameObject _localPlayer, UIButtonGroup _buttonGroup = null)
+		public virtual void Init(UIButtonGroup _buttonGroup = null)
 		{
 			
 			button.onClick.RemoveAllListeners();
-			
-			localPlayer = _localPlayer;
 			
 			if (delayDuration <= 0 && _buttonGroup == null)
 				return;
