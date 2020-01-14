@@ -19,7 +19,7 @@ namespace wovencode
 		[DevExtMethods("Constructor")]
 		public static void Constructor_UI()
 		{
-			EditorTools.AddScriptingDefine("WOCO_UI");
+			EditorTools.AddScriptingDefine("wUI");
 		}
 
 	}

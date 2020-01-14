@@ -43,7 +43,7 @@ namespace wovencode
 		// -------------------------------------------------------------------------------
 		public virtual void Init(ref T _entry)
 		{
-#if WOCO_PLAYER
+#if wPLAYER
 			localPlayer 			= PlayerComponent.localPlayer;
 #endif
 			entry 					= _entry;
