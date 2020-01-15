@@ -29,8 +29,9 @@ namespace wovencode
 		// -------------------------------------------------------------------------------
 		// Init
 		// -------------------------------------------------------------------------------
-		protected void Init()
+		protected void ShowToolTip()
 		{
+			HideTooltip();
 			UITooltip.singleton.Show(tooltipText);
 			UITooltip.singleton.transform.SetParent(transform.root, true);
 			UITooltip.singleton.transform.SetAsLastSibling();
@@ -39,22 +40,13 @@ namespace wovencode
 		}
 		
 		// -------------------------------------------------------------------------------
-		// ShowToolTip
-		// -------------------------------------------------------------------------------
-		protected void ShowToolTip(float delay)
-		{
-			HideTooltip();
-			Invoke(nameof(Init), delay);
-		}
-		
-		// -------------------------------------------------------------------------------
 		// HideTooltip
 		// -------------------------------------------------------------------------------
 		protected void HideTooltip()
 		{
+			_tooltipActive = false;
 			CancelInvoke(nameof(ShowToolTip));
 			UITooltip.singleton.Hide();
-			_tooltipActive = false;
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -62,11 +54,11 @@ namespace wovencode
 		// -------------------------------------------------------------------------------
 		public void OnPointerEnter(PointerEventData d)
 		{
-			ShowToolTip(0.1f);
+			ShowToolTip();
 		}
 		
 		// -------------------------------------------------------------------------------
-		// HideTooltip
+		// OnPointerExit
 		// -------------------------------------------------------------------------------
 		public void OnPointerExit(PointerEventData d)
 		{
