@@ -1,33 +1,48 @@
-// (c) IndieMMORPG Kit
+// =======================================================================================
+// Wovencore
+// by Weaver (Fhiz)
+// MIT licensed
+// =======================================================================================
 
 using UnityEngine;
-using iMMO.Core;
+using wovencode;
 
-namespace iMMO.Core
+namespace wovencode
 {
-
+	
+	// ===================================================================================
+	// UILink
+	// ===================================================================================
 	public class UILink : MonoBehaviour
 	{
 
         [Header("UI Links")]
         public GameObject[] uiLinks;
-
+		
+		// -------------------------------------------------------------------------------
         private void OnEnable()
 		{
 			foreach (GameObject gameObject in uiLinks)
             {
-                gameObject.SetActive(true);
+            	if (gameObject != null)
+                	gameObject.SetActive(true);
             }
         }
-
+		
+		// -------------------------------------------------------------------------------
         private void OnDisable()
         {
             foreach (GameObject gameObject in uiLinks)
             {
-                gameObject.SetActive(false);
+            	if (gameObject != null)
+                	gameObject.SetActive(false);
             }
         }
-
+		
+		// -------------------------------------------------------------------------------
+		
     }
 
 }
+
+// =======================================================================================
