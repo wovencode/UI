@@ -11,12 +11,13 @@
 // =======================================================================================
 
 using Wovencode;
+using Wovencode.UI;
 using UnityEngine;
 using System.Collections;
 using System;
 using UnityEngine.UI;
 
-namespace Wovencode
+namespace Wovencode.UI
 {
 
 	// ===================================================================================

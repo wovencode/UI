@@ -8,8 +8,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Wovencode;
+using Wovencode.UI;
 
-namespace Wovencode
+namespace Wovencode.UI
 {
 	
 	// ===================================================================================

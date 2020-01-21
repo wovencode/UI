@@ -13,8 +13,9 @@
 using UnityEngine;
 using System.Collections;
 using Wovencode;
+using Wovencode.UI;
 
-namespace Wovencode
+namespace Wovencode.UI
 {
 	
 	// ===================================================================================

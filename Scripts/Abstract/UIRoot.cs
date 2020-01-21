@@ -12,9 +12,13 @@
 // =======================================================================================
 
 using Wovencode;
+using Wovencode.UI;
+#if wNETWORK
+using Wovencode.Network;
+#endif
 using UnityEngine;
 
-namespace Wovencode
+namespace Wovencode.UI
 {
 
 	// ===================================================================================
@@ -27,7 +31,23 @@ namespace Wovencode
 		[Range(0.01f, 3f)]
 		public float updateInterval = 0.25f;
 		
-		protected float fInterval;
+		protected float fInterval = 0.01f;
+		
+#if wNETWORK
+		protected Wovencode.Network.NetworkManager networkManager;
+#endif
+		
+		// -------------------------------------------------------------------------------
+		// Awake
+		// 
+		// -------------------------------------------------------------------------------
+		protected override void Awake()
+		{
+#if wNETWORK
+			networkManager = FindObjectOfType<Wovencode.Network.NetworkManager>();
+#endif
+			base.Awake();
+		}
 		
 		// -------------------------------------------------------------------------------
 		// Update is called every frame
@@ -35,7 +55,7 @@ namespace Wovencode
 		// -------------------------------------------------------------------------------
 		void Update()
 		{
-			if (Time.time > fInterval || fInterval <= 0)
+			if (Time.time > fInterval)
 			{
 				ThrottledUpdate();
 				fInterval = Time.time + updateInterval;
@@ -53,3 +73,5 @@ namespace Wovencode
 	}
 
 }
+
+// =======================================================================================
