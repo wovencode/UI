@@ -19,7 +19,7 @@ namespace Wovencode.UI
 	public partial class UIButtonGroup : MonoBehaviour
 	{
 	
-		protected List<UIButton> buttons = new List<UIButton>();
+		[HideInInspector] public List<UIButton> buttons = new List<UIButton>();
 		
 		// -------------------------------------------------------------------------------
 		public void Clear()
