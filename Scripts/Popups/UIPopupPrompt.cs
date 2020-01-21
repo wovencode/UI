@@ -9,13 +9,13 @@
 //
 // =======================================================================================
 
-using wovencode;
+using Wovencode;
 using UnityEngine;
 using System.Collections;
 using System;
 using UnityEngine.UI;
 
-namespace wovencode
+namespace Wovencode
 {
 
 	// ===================================================================================

@@ -12,9 +12,9 @@
 
 using UnityEngine;
 using System.Collections;
-using wovencode;
+using Wovencode;
 
-namespace wovencode
+namespace Wovencode
 {
 	
 	// ===================================================================================

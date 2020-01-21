@@ -10,9 +10,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using wovencode;
+using Wovencode;
 
-namespace wovencode
+namespace Wovencode
 {
 	
 	// ===================================================================================

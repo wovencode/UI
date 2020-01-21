@@ -6,9 +6,9 @@
 
 using UnityEngine;
 using UnityEngine.UI;
-using wovencode;
+using Wovencode;
 
-namespace wovencode
+namespace Wovencode
 {
 
 	// ===================================================================================
