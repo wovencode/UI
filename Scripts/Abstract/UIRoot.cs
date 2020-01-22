@@ -35,6 +35,7 @@ namespace Wovencode.UI
 		
 #if wNETWORK
 		protected Wovencode.Network.NetworkManager networkManager;
+		protected Wovencode.Network.NetworkAuthenticator networkAuthenticator;
 #endif
 		
 		// -------------------------------------------------------------------------------
@@ -45,6 +46,7 @@ namespace Wovencode.UI
 		{
 #if wNETWORK
 			networkManager = FindObjectOfType<Wovencode.Network.NetworkManager>();
+			networkAuthenticator = FindObjectOfType<Wovencode.Network.NetworkAuthenticator>();
 #endif
 			base.Awake();
 		}

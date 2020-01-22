@@ -34,10 +34,10 @@ namespace Wovencode.UI
 		}
 		
 		// -------------------------------------------------------------------------------
-		public void OnPressed()
+		public void OnPressed(UIButton _button)
 		{
 			foreach (UIButton button in buttons)
-				button.OnPressed();
+				button.OnPressed(button != _button);
 		}
 		
 		// -------------------------------------------------------------------------------

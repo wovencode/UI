@@ -42,7 +42,7 @@ namespace Wovencode.UI
 			button.onClick.AddListener(() =>
 			{
 				if (buttonGroup)
-					buttonGroup.OnPressed();
+					buttonGroup.OnPressed(this);
 				else
 					OnPressed();
 			});
@@ -50,7 +50,7 @@ namespace Wovencode.UI
 		}
 		
 		// -------------------------------------------------------------------------------
-		public virtual void OnPressed()
+		public virtual void OnPressed(bool deselect=false)
 		{
 			button.interactable = false;
 			Invoke(nameof(EnableAgain), delayDuration);
