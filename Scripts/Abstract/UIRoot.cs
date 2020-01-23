@@ -28,6 +28,7 @@ namespace Wovencode.UI
 	{
 	
 		[Header("UI Throttle")]
+		public bool requiresActiveRoot = true;
 		[Range(0.01f, 3f)]
 		public float updateInterval = 0.25f;
 		
@@ -59,7 +60,8 @@ namespace Wovencode.UI
 		{
 			if (Time.time > fInterval)
 			{
-				ThrottledUpdate();
+				if (root.activeSelf || !requiresActiveRoot)
+					ThrottledUpdate();
 				fInterval = Time.time + updateInterval;
 			}
 		}
