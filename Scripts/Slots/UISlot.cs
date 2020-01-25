@@ -38,16 +38,12 @@ namespace Wovencode.UI
     	public Text timerText;
     	public Image timerCircle;
     	
-		protected GameObject		localPlayer = null;
 		protected T					entry;
 		
 		// -------------------------------------------------------------------------------
 		public virtual void Init(ref T _entry)
 		{
-#if wPLAYER
-			localPlayer 			= PlayerComponent.localPlayer;
-#endif
-			entry 					= _entry;
+			entry = _entry;
 		}
 		
 		// -------------------------------------------------------------------------------

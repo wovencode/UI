@@ -13,9 +13,6 @@
 
 using Wovencode;
 using Wovencode.UI;
-#if wNETWORK
-using Wovencode.Network;
-#endif
 using UnityEngine;
 
 namespace Wovencode.UI
@@ -33,22 +30,12 @@ namespace Wovencode.UI
 		public float updateInterval = 0.25f;
 		
 		protected float fInterval = 0.01f;
-		
-#if wNETWORK
-		protected Wovencode.Network.NetworkManager networkManager;
-		protected Wovencode.Network.NetworkAuthenticator networkAuthenticator;
-#endif
-		
+
 		// -------------------------------------------------------------------------------
 		// Awake
-		// 
 		// -------------------------------------------------------------------------------
 		protected override void Awake()
 		{
-#if wNETWORK
-			networkManager = FindObjectOfType<Wovencode.Network.NetworkManager>();
-			networkAuthenticator = FindObjectOfType<Wovencode.Network.NetworkAuthenticator>();
-#endif
 			base.Awake();
 		}
 		
