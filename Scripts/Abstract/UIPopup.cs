@@ -29,7 +29,6 @@ namespace Wovencode.UI
 	{
 		
 		[Header("UI Popup")]
-		[SerializeField] protected UIWindowBackground background;
 		[SerializeField] protected Animator animator;
 		[SerializeField] protected string showTriggerName = "show";
 		[SerializeField] protected string closeTriggerName = "close";
@@ -38,7 +37,7 @@ namespace Wovencode.UI
 		// -------------------------------------------------------------------------------
 		protected override void Awake()
 		{
-			SetPopupActive(false);
+			UIBackgroundLayer.singleton.Hide();	
 			base.Awake();
 		}
 		
@@ -65,33 +64,17 @@ namespace Wovencode.UI
 		// -------------------------------------------------------------------------------
 		protected void Init()
 		{
-			SetPopupActive(true);
 			animator.SetTrigger(showTriggerName);
-			background.FadeIn();
+			UIBackgroundLayer.singleton.FadeIn();	
 		}
 		
 		// -------------------------------------------------------------------------------
 		protected void Close()
 		{
 			animator.SetTrigger(closeTriggerName);
-			background.FadeOut();
-			StartCoroutine(Tools.GetMethodName(DeactivateWindow));
+			UIBackgroundLayer.singleton.FadeOut();
 		}
-		 
-		// -------------------------------------------------------------------------------
-		protected IEnumerator DeactivateWindow()
-		{
-			yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-			SetPopupActive(false);
-		}
-		
-		// -------------------------------------------------------------------------------
-		protected void SetPopupActive(bool active)
-		{
-			background.gameObject.SetActive(active);
-			Hide();
-		}
-		
+
 		// -------------------------------------------------------------------------------
 		
 	}

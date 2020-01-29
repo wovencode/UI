@@ -1,5 +1,5 @@
 ﻿// =======================================================================================
-// UIWindowBackground
+// Wovencore
 // by Weaver (Fhiz)
 // MIT licensed
 //
@@ -19,14 +19,25 @@ namespace Wovencode.UI
 {
 	
 	// ===================================================================================
-	// UIWindowBackground
+	// UIBackgroundLayer
 	// ===================================================================================
-	public partial class UIWindowBackground : MonoBehaviour 
+	public partial class UIBackgroundLayer : UIRoot 
 	{
 
 		[SerializeField] protected Animator animator;
 		[SerializeField] protected string fadeInTriggerName = "fadeIn";
 		[SerializeField] protected string fadeOutTriggerName = "fadeOut";
+		
+		public static UIBackgroundLayer singleton;
+		
+		// -------------------------------------------------------------------------------
+		// Awake
+		// -------------------------------------------------------------------------------
+		protected override void Awake()
+		{
+			singleton = this;
+			base.Awake();
+		}
 		
 		// -------------------------------------------------------------------------------
 		// FadeIn
@@ -34,6 +45,7 @@ namespace Wovencode.UI
 		public void FadeIn()
 		{
 			animator.SetTrigger(fadeInTriggerName);
+			Show();
 		}
 		
 		// -------------------------------------------------------------------------------
@@ -42,6 +54,14 @@ namespace Wovencode.UI
 		public void FadeOut()
 		{
 			animator.SetTrigger(fadeOutTriggerName);
+			StartCoroutine(nameof(DeactivateWindow));
+		}
+		
+		// -------------------------------------------------------------------------------
+		protected IEnumerator DeactivateWindow()
+		{
+			yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+			Hide();
 		}
 		
 		// -------------------------------------------------------------------------------

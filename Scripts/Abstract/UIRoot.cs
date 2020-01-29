@@ -45,7 +45,7 @@ namespace Wovencode.UI
 		// -------------------------------------------------------------------------------
 		void Update()
 		{
-			if (Time.time > fInterval)
+			if (updateInterval > 0 && Time.time > fInterval)
 			{
 				if (root.activeSelf || !requiresActiveRoot)
 					ThrottledUpdate();
