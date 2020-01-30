@@ -37,7 +37,7 @@ namespace Wovencode.UI
 		// -------------------------------------------------------------------------------
 		protected override void Awake()
 		{
-			UIBackgroundLayer.singleton.Hide();	
+			//UIBackgroundLayer.singleton.Hide();	
 			base.Awake();
 		}
 		

@@ -46,9 +46,9 @@ namespace Wovencode.UI
 		// -------------------------------------------------------------------------------
 		// Init
 		// -------------------------------------------------------------------------------
-		public void Init(string _description, string _confirmText="", string _cancelText="", Action _confirmAction=null, Action _cancelAction=null)
+		public void Init(string _description, Action _confirmAction, Action _cancelAction=null, string _confirmText="", string _cancelText="")
 		{
-
+		
 			confirmAction 	= _confirmAction;
 			cancelAction 	= _cancelAction;
 			
@@ -65,7 +65,7 @@ namespace Wovencode.UI
 				cancelButton.GetComponent<Text>().text = _cancelText;
 				
 			Show(_description);
-		
+			
 		}
 		
 		// -------------------------------------------------------------------------------

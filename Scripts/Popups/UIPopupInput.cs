@@ -48,7 +48,7 @@ namespace Wovencode.UI
 		// -------------------------------------------------------------------------------
 		// Init
 		// -------------------------------------------------------------------------------
-		public void Init(string _description, string _confirmText="", string _cancelText="", Action<string> _confirmAction=null, Action _cancelAction=null)
+		public void Init(string _description, Action<string> _confirmAction, Action _cancelAction=null, string _confirmText="", string _cancelText="")
 		{
 			
 			confirmAction 	= _confirmAction;
